@@ -13,6 +13,7 @@ function Login() {
     const {error,setError} = useState("")
     
     const login = async(data) => {
+        console.log(data)
         setError("")
         try {
             const session = await authService.login(data)
@@ -54,13 +55,26 @@ function Login() {
                     {...register("email",{
                         required:true,
                         validate:{
-                            matchPattern:(value)=> /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3)+$/. test(v) || 
+                            matchPattern:(value)=> /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3)+$/. test(VALUE) || 
                             "Email address must be a valid adress",
 
                             }
                         
                     })}
                     />
+                    <Input 
+                    label="Password: "
+                    type="password"
+                    placeholder="Enter your password"
+                    {...register("password", {
+                        required:true,
+                    })}
+                    />
+                    <Button 
+                    type="submit"
+                    className="w-full"
+                    >Sign in</Button>
+                    
                 </form>
             </div>
         </div>
